@@ -91,25 +91,33 @@ if (hireBtn) {
 }
 
 // Contact form submission
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+const contactForm = document.getElementById("contact-form");
 
-        // Get form data
-        const name = document.getElementById('name');
-        const email = document.getElementById('email');
-        const message = document.getElementById('message');
+contactForm.addEventListener("submit", function (e) {
+  e.preventDefault(); // Prevent page reload
 
-        // Simple validation
-        if (name && email && message && name.value && email.value && message.value) {
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        } else {
-            alert('Please fill in all fields.');
-        }
+  const formData = new FormData(contactForm);
+
+  fetch(contactForm.action, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert("✅ Your message has been sent successfully!");
+        contactForm.reset();
+      } else {
+        alert("❌ Something went wrong. Please try again.");
+      }
+    })
+    .catch((error) => {
+      alert("❌ There was a problem submitting the form.");
     });
-}
+});
+
 
 // Intersection Observer for animations
 const observerOptions = {

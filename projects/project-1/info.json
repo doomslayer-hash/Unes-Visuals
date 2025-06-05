@@ -1,0 +1,16 @@
+
+{
+  "title": "Brand Identity Design",
+  "description": "Complete Logo & Branding Package",
+  "category": "branding",
+  "fullDescription": "A comprehensive brand identity design project featuring logo creation, color palette development, and brand guidelines. This project showcases modern design principles with a focus on versatility and memorability.",
+  "images": [
+    "main.jpg",
+    "logo-variations.jpg",
+    "brand-colors.jpg",
+    "business-cards.jpg"
+  ],
+  "tools": ["Adobe Illustrator", "Adobe Photoshop", "Adobe InDesign"],
+  "client": "TechStart Solutions",
+  "year": "2024"
+}

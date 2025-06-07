@@ -136,10 +136,9 @@ class ChatBot {
 
         const chatbotHTML = `
             <div class="chatbot-container" id="chatbot-container">
-                <div class="chatbot-toggle-small" id="chatbot-toggle-small">
-                    <i class="fas fa-robot"></i>
-                    <span class="notification-badge-small" id="notification-badge-small">1</span>
-                    <div class="online-indicator-small" id="online-indicator-small"></div>
+                <div class="chatbot-toggle" id="chatbot-toggle">
+                    <i class="fas fa-comments"></i>
+                    <span class="notification-badge" id="notification-badge">1</span>
                 </div>
 
                 <div class="chatbot-window" id="chatbot-window">
@@ -202,13 +201,13 @@ class ChatBot {
     }
 
     bindEvents() {
-        const toggleSmall = document.getElementById('chatbot-toggle-small');
+        const toggle = document.getElementById('chatbot-toggle');
         const closeBtn = document.getElementById('chatbot-close');
         const sendBtn = document.getElementById('chatbot-send');
         const inputField = document.getElementById('chatbot-input-field');
 
-        if (toggleSmall) {
-            toggleSmall.addEventListener('click', () => this.toggleChatbot());
+        if (toggle) {
+            toggle.addEventListener('click', () => this.toggleChatbot());
         }
 
         if (closeBtn) {
@@ -246,10 +245,10 @@ class ChatBot {
 
     showWelcomeMessage() {
         setTimeout(() => {
-            const notificationSmall = document.getElementById('notification-badge-small');
-            if (notificationSmall) {
-                notificationSmall.style.display = 'flex';
-                notificationSmall.style.animation = 'bounceIn 0.5s ease';
+            const notification = document.getElementById('notification-badge');
+            if (notification) {
+                notification.style.display = 'flex';
+                notification.style.animation = 'bounceIn 0.5s ease';
             }
         }, 2000);
     }
@@ -279,13 +278,13 @@ class ChatBot {
 
     closeChatbot() {
         const window = document.getElementById('chatbot-window');
-        const toggleSmall = document.getElementById('chatbot-toggle-small');
+        const toggle = document.getElementById('chatbot-toggle');
 
-        if (!window || !toggleSmall) return;
+        if (!window || !toggle) return;
 
         this.isOpen = false;
         window.classList.remove('active');
-        toggleSmall.classList.remove('active');
+        toggle.classList.remove('active');
         this.hideSuggestions();
     }
 
@@ -1005,10 +1004,10 @@ class ChatBot {
 
     toggleChatbot() {
         const window = document.getElementById('chatbot-window');
-        const toggleSmall = document.getElementById('chatbot-toggle-small');
-        const notificationSmall = document.getElementById('notification-badge-small');
+        const toggle = document.getElementById('chatbot-toggle');
+        const notification = document.getElementById('notification-badge');
 
-        if (!window || !toggleSmall) return;
+        if (!window || !toggle) return;
 
         this.isOpen = !this.isOpen;
 
@@ -1021,14 +1020,14 @@ class ChatBot {
 
         if (this.isOpen) {
             window.classList.add('active');
-            toggleSmall.classList.add('active');
-            if (notificationSmall) notificationSmall.style.display = 'none';
+            toggle.classList.add('active');
+            if (notification) notification.style.display = 'none';
 
             // Show suggestions panel after a brief delay
             setTimeout(() => this.showSuggestions(), 800);
         } else {
             window.classList.remove('active');
-            toggleSmall.classList.remove('active');
+            toggle.classList.remove('active');
             this.hideSuggestions();
         }
     }

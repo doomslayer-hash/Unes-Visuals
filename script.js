@@ -610,7 +610,88 @@ document.querySelectorAll('.service-card').forEach(card => {
     });
 });
 
-// Quick access panel removed by user request
+// Create floating quick-access panel
+function createQuickAccessPanel() {
+    // Check if panel already exists to prevent duplicates
+    if (document.getElementById('quick-access-panel')) return;
+    
+    const panel = document.createElement('div');
+    panel.className = 'quick-access-panel';
+    panel.id = 'quick-access-panel';
+    panel.style.cssText = `
+        position: fixed !important;
+        left: 20px !important;
+        bottom: 20px !important;
+        z-index: 9998 !important;
+        opacity: 1 !important;
+    `;
+    
+    panel.innerHTML = `
+        <div class="panel-toggle" id="panel-toggle">
+            <i class="fas fa-magic"></i>
+        </div>
+        <div class="panel-content" id="panel-content">
+            <div class="panel-item" data-action="chat">
+                <i class="fas fa-comments"></i>
+                <span>Chat</span>
+            </div>
+            <div class="panel-item" data-action="hire">
+                <i class="fas fa-handshake"></i>
+                <span>Hire Me</span>
+            </div>
+            <div class="panel-item" data-action="portfolio">
+                <i class="fas fa-folder-open"></i>
+                <span>Portfolio</span>
+            </div>
+            <div class="panel-item" data-action="theme">
+                <i class="fas fa-palette"></i>
+                <span>Theme</span>
+            </div>
+            <div class="panel-social">
+                <a href="https://www.instagram.com/doomslayer.47/" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.behance.net/brightvibes" target="_blank">
+                    <i class="fab fa-behance"></i>
+                </a>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(panel);
+    
+    // Panel toggle functionality
+    const toggle = document.getElementById('panel-toggle');
+    const content = document.getElementById('panel-content');
+    
+    toggle.addEventListener('click', () => {
+        panel.classList.toggle('expanded');
+    });
+    
+    // Panel actions
+    document.querySelectorAll('.panel-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const action = item.dataset.action;
+            
+            switch(action) {
+                case 'chat':
+                    document.getElementById('chatbot-toggle')?.click();
+                    break;
+                case 'hire':
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    break;
+                case 'portfolio':
+                    document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                    break;
+                case 'theme':
+                    toggleTheme();
+                    break;
+            }
+            
+            panel.classList.remove('expanded');
+        });
+    });
+}
 
 // Theme toggle functionality
 function toggleTheme() {
@@ -635,6 +716,9 @@ if (savedTheme === 'light') {
 // Add loading animation with error checking and deployment fixes
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
+    
+    // Initialize immediately for better UX
+    createQuickAccessPanel();
     
     // Force floating features initialization
     setTimeout(() => {

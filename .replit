@@ -8,6 +8,7 @@ packages = ["static-web-server"]
 [deployment]
 publicDir = "/"
 deploymentTarget = "static"
+run = ["sh", "-c", "static-web-server -w ./.config/static-web-server.toml"]
 
 [workflows]
 runButton = "Serve static"
@@ -24,6 +25,15 @@ To see changes you make, you can hit the refresh button in the preview, you do \
 Console logs are available in the Preview devtools or your browser devtools.\" && static-web-server -w ./.config/static-web-server.toml > /dev/null 2>&1
 """
 waitForPort = 80
+
+[[workflows.workflow]]
+name = "Run PHP Server"
+author = 43530388
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "php -S 0.0.0.0:5000"
 
 [[ports]]
 localPort = 80

@@ -1,0 +1,51 @@
+
+<!-- Floating Chatbot -->
+<div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <i class="fas fa-comments"></i>
+        <span class="notification-badge" id="notification-badge">1</span>
+    </div>
+    
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-info">
+                <h4>Unes Assistant</h4>
+                <span class="status online">Online</span>
+            </div>
+            <button class="chatbot-close" id="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Hello! I'm Unes's assistant. How can I help you today?</p>
+                    <span class="message-time">Now</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input-field" placeholder="Type your message..." maxlength="500">
+            <button id="chatbot-send" type="button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-typing" id="chatbot-typing">
+            <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span>Assistant is typing...</span>
+        </div>
+    </div>
+</div>
